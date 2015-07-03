@@ -1,0 +1,32 @@
+ext {
+
+    vaadinClientVersion = "7.1.8"
+    mysqlConnectorVersion = "5.1.26"
+    janinoVersion = "2.6.1"
+    log4jVersion = "1.2.13"
+    logbackVersion = "1.0.13"
+    tomcatJDBCVersion = "7.0.39"
+    mongoJavaDriverVersion = "2.12.2"
+
+//    Vaadin addons
+
+    refresherAddonVersion = "1.2.1.7"
+
+    buildVersion = version
+    buildNumber = "unspecified"
+    buildDate = "unspecified"
+}
+
+subprojects {
+
+    apply plugin: "idea"
+    apply plugin: "jacoco"
+
+    sourceCompatibility = JavaVersion.VERSION_1_6
+    targetCompatibility = JavaVersion.VERSION_1_6
+
+    buildDir = "target"
+
+    group = "com.pb.dashboard"
+    version = "${version}"
+}

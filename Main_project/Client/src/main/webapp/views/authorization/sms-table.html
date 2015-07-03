@@ -1,0 +1,11 @@
+<div id="auth-table" class="center">
+    <table ng-table="::smsTable.params" class="table">
+        <tr ng-repeat="pay in $data">
+            <td data-title="'Дата'" ng-bind="::pay.date">
+            <td data-title="'Более 1 СМС в день'" ng-bind="::pay.sms1">
+            <td data-title="'Более 3 СМС в день'" ng-bind="::pay.sms3">
+            <td data-title="'Более 5 СМС в день'" ng-bind="::pay.sms5">
+            <td data-title="'Более 10 СМС в день'" ng-bind="::pay.sms10">
+        </tr>
+    </table>
+</div>

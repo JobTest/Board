@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="v1_06.1" author="dn190693mvi" runOnChange="true">
+        <comment>https://itsm.privatbank.ua/predmine/dashboard/issue/332717.htm</comment>
+        <sqlFile path="procedures/getCountSalesByChannel.sql" relativeToChangelogFile="true" splitStatements="true"
+                 endDelimiter="#"/>
+    </changeSet>
+
+    <changeSet id="v1_06.2" author="dn190693mvi" runOnChange="true">
+        <comment>https://itsm.privatbank.ua/predmine/dashboard/issue/332717.htm</comment>
+        <sqlFile path="procedures/getCountSalesByTicketType.sql" relativeToChangelogFile="true" splitStatements="true"
+                 endDelimiter="#"/>
+    </changeSet>
+
+    <changeSet id="v1_06.3" author="dn190693mvi" runOnChange="true">
+        <comment>https://itsm.privatbank.ua/predmine/dashboard/issue/332717.htm</comment>
+        <sqlFile path="procedures/getCountSalesByBranch.sql" relativeToChangelogFile="true" splitStatements="true"
+                 endDelimiter="#"/>
+    </changeSet>
+
+    <changeSet id="v1_06.4" author="dn190693mvi" runOnChange="true">
+        <comment>https://itsm.privatbank.ua/predmine/dashboard/issue/332717.htm</comment>
+        <sqlFile path="procedures/getCountSalesByMonth.sql" relativeToChangelogFile="true" splitStatements="true"
+                 endDelimiter="#"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <bean id="biplaneDescDao" class="com.pb.dashboard.dao.daomanager.BiplaneDescriptionDAO" />
+       <bean id="biplane2plDao" class="com.pb.dashboard.dao.daomanager.BiplanePl2DAO" />
+       <bean id="biplaneSupportDao" class="com.pb.dashboard.dao.daomanager.BiplaneSupportDAO" />
+       <bean id="dashboardDao" class="com.pb.dashboard.dao.daomanager.DashboardDAO" />
+       <bean id="vitrinaDao" class="com.pb.dashboard.dao.daomanager.VitrinaMetricsDAO" />
+
+    <bean id="daoFactory" class="com.pb.dashboard.dao.daomanager.DAOFactory">
+        <property name="vitrinaMetrics" ref="vitrinaDao"/>
+        <property name="dashboard" ref="dashboardDao"/>
+        <property name="biplaneDescription" ref="biplaneDescDao"/>
+        <property name="biplanePl2" ref="biplane2plDao"/>
+        <property name="biplaneSupport" ref="biplaneSupportDao"/>
+    </bean>
+
+    <bean id="monitoringService" class="com.pb.dashboard.dao.service.MonitoringService">
+        <constructor-arg name="dbManager" ref="daoFactory"/>
+    </bean>
+    <bean id="externalService" class="com.pb.dashboard.dao.service.ExternalService">
+        <constructor-arg name="dbManager" ref="daoFactory"/>
+    </bean>
+    <bean id="serviceFactory" class="com.pb.dashboard.dao.service.ServiceFactory">
+        <property name="monitoring" ref="monitoringService"/>
+        <property name="external" ref="externalService"/>
+    </bean>
+
+
+</beans>

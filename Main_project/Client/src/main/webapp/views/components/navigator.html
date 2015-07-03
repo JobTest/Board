@@ -1,0 +1,95 @@
+<nav role="navigation">
+
+    <div id="menu" style="background-color: #a0a0a0; height: 40px; margin: 0 0 10px">
+        <ul class="menu">
+            <li><a ng-href="{{::index.urlDashboard}}"><span>HOME</span></a></li>
+            <li><a ng-href="{{::index.biplane}}" class="parent"><span>Biplane</span></a>
+
+                <div class="front-all">
+                    <ul>
+                        <li><a ng-href="{{::index.biplanePredmine}}"><span>Predmine</span></a></li>
+                        <li><a ng-href="{{::index.urlDashboard}}" class="parent"><span>Monitoring</span></a>
+
+                            <div>
+                                <ul>
+                                    <li><a ng-href="{{::index.monitoringTimings}}"><span>Тайминги</span></a></li>
+                                    <li><a ng-href="{{::index.monitoringErrors}}"><span>Ошибки</span></a></li>
+                                    <li><a ng-href="{{::index.monitoringStatistic}}"><span>Статистика</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a ng-href="{{::index.paymentsPay}}" class="parent"><span>Прием платежей</span></a>
+
+                            <div>
+                                <ul>
+                                    <li><a ng-href="{{::index.paymentsPay}}"><span>Платежи</span></a></li>
+                                    <li><a ng-href="{{::index.paymentsOperday}}"><span>Опердень</span></a></li>
+                                    <li><a ng-href="{{::index.paymentsSelection}}"><span>Выборка</span></a></li>
+                                    <li><a ng-href="{{::index.paymentsTimiline}}"><span>Таймлайн</span></a></li>
+                                    <li><a ng-href="{{::index.paymentsTrends}}"><span>Тренды</span></a></li>
+                                    <li><a ng-href="{{::index.paymentsSla}}"><span>SLA</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a ng-href="{{::index.loadQueue}}"
+                               class="parent"><span>Протокол загрузки задолженности</span></a>
+
+                            <div>
+                                <ul>
+                                    <li><a ng-href="{{::index.loadQueue}}"><span>Очередь</span></a></li>
+                                    <li><a ng-href="{{::index.loadDownload}}"><span>Загруженные</span></a></li>
+                                    <li><a ng-href="{{::index.loadCharts}}"><span>Графики</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a ng-href="{{::index.testAll}}" class="parent"><span>Тестирование ПК Биплан</span></a>
+
+                            <div>
+                                <ul>
+                                    <li><a ng-href="{{::index.testAll}}"><span>Тесты</span></a></li>
+                                    <li><a ng-href="{{::index.testMiddleware}}"><span>Middleware</span></a></li>
+                                    <li><a ng-href="{{::index.testMiddleware2}}"><span>Middleware2</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a ng-href="{{::index.supportErrors}}" class="parent"><span>Биплан Support</span></a>
+
+                            <div>
+                                <ul>
+                                    <li><a ng-href="{{::index.supportErrors}}"><span>Ошибки</span></a></li>
+                                    <li><a ng-href="{{::index.supportQuery}}"><span>Запросы</span></a></li>
+                                    <li><a ng-href="{{::index.supportZabbix}}"><span>Zabbix</span></a></li>
+                                    <li><a ng-href="{{::index.supportTiming}}"><span>Тайминги</span></a></li>
+                                    <li><a ng-href="{{::index.supportPay}}"><span>Прием платежей</span></a></li>
+                                    <li><a ng-href="{{::index.supportDownload}}"><span>Протокол загрузки</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li><a ng-href="{{::index.bms}}" class="parent"><span>Бизнес массовых платежей</span></a>
+
+                <div class="front-all">
+                    <ul>
+                        <li><a ng-href="{{::index.bmsPayments}}"><span>Платежи</span></a></li>
+                        <li><a ng-href="{{::index.bmsAuthorization}}"><span>Авторизация</span></a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a ng-href="{{::index.tickets}}"><span>Билетная система</span></a></li>
+            <li><a ng-href="{{::index.quality}}" class="parent"><span>Статистика качества платежей</span></a>
+
+                <div class="front-all">
+                    <ul>
+                        <li><a ng-href="{{::index.quality}}"><span>Забракованные</span></a></li>
+                        <li><a ng-href="{{::index.quality}}"><span>Тайминги</span></a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

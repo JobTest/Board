@@ -1,0 +1,36 @@
+@mixin load-view {
+
+/*  .v-table-load-table .v-scrollable {
+      overflow-y: auto;
+      overflow-x: visible;
+  }*/
+
+  .v-table-load-table .v-table-caption-container {
+    white-space: normal;
+  }
+
+  .load-view .v-vertical-layout {
+      padding-right: 5px;
+  }
+
+  .load-view .v-label-m-date {
+    text-align: right;
+    font-size: 12px;
+  }
+
+  .load-view .v-label-info {
+    font-size: 12px;
+  }
+
+  .load-view .v-label-load-date {
+    margin-bottom: -3px;
+    font-weight: bold;
+  }
+
+  .load-view .v-label-total-label {
+    color: green;
+    margin-left: -15px;
+    font-weight: bold;
+  }
+
+}

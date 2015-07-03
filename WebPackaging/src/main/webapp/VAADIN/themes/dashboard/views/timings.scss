@@ -1,0 +1,269 @@
+@mixin dashboard-timings-view {
+
+  .timings-view {
+
+    background: #dfe0e1;
+    /* TODO mixin */
+    background: -moz-linear-gradient(top, #d8d9da 0%, #e6e7e8 10%, #e0e1e2 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d8d9da), color-stop(10%, #e6e7e8), color-stop(100%, #e0e1e2));
+    background: -webkit-linear-gradient(top, #d8d9da 0%, #e6e7e8 10%, #e0e1e2 100%);
+    background: -o-linear-gradient(top, #d8d9da 0%, #e6e7e8 10%, #e0e1e2 100%);
+    background: -ms-linear-gradient(top, #d8d9da 0%, #e6e7e8 10%, #e0e1e2 100%);
+
+    .v-spacing {
+      width: 20px;
+      height: 20px;
+    }
+
+    .v-csslayout {
+      padding: 20px 5px 0;
+      overflow: auto;
+      position: relative;
+    }
+
+  }
+
+  /* Buttons */
+
+  .v-button div.v-popup-indicator {
+    margin-left: 25px;
+  }
+
+  .v-popupview-sl {
+    height: 40px;
+    width: 70px;
+    background: transparent url(../img/timings/timer30x30.png) no-repeat 30%;
+  }
+
+  .v-button-hw {
+    height: 40px;
+    width: 70px;
+    border: none;
+    box-shadow: none;
+    background: transparent url(../img/timings/server30x30.png) no-repeat 30%;
+  }
+
+  .v-popupview-st {
+    height: 40px;
+    width: 70px;
+    background: transparent url(../img/timings/bar-chart30x30.png) no-repeat 30%;
+  }
+
+  .buttons-panel {
+    @include border-radius(2px);
+    border: 1px solid #d8d9d9;
+    padding-bottom: 10px;
+  }
+
+  .timings-view .v-label {
+    font: normal;
+  }
+
+  .v-label-country-title {
+    font-size: 30px;
+    color: #7F7F7F;
+    margin-left: 5px;
+  }
+
+  .v-label-date {
+    font-size: 20px;
+    font-weight: 600;
+    color: #56AA1C;
+  }
+
+  .v-label-title {
+    width: 1220px;
+    border-top: 1px solid #d8d9d9;
+    border-bottom: 1px solid #d8d9d9;
+    color: #349AFF;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 5px;
+  }
+
+  .ukr {
+    width: 600px;
+  }
+
+  .rus, .geo {
+    width: 280px;
+  }
+
+  .v-horizontallayout-geo {
+    margin-left: 20px;
+  }
+
+  .ukr-payments {
+    border-right: 1px solid #BFBDBD;
+    padding-right: 20px;
+    height: 370px;
+  }
+
+  .geo-payments {
+    border-left: 1px solid #BFBDBD;
+    padding-left: 20px;
+    height: 370px;
+  }
+
+  .ukr-tickets {
+    border-right: 1px solid #BFBDBD;
+    padding-right: 20px;
+    height: 115px;
+  }
+
+  .sub-panel-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: #349aff;
+    text-transform: uppercase;
+    line-height: 38px;
+  }
+
+  .buttons-title {
+    font-weight: bold;
+  }
+
+  .v-horizontallayout-header {
+    height: 50px;
+  }
+
+  /* Radio buttons group */
+  .v-select-optiongroup-horizontal .v-select-option {
+    display: inline-block;
+  }
+
+  /* Datefield */
+  .v-datefield-button {
+    height: 26px;
+    width: 26px;
+    margin-left: -26px;
+    border: none;
+    outline: none;
+    background: transparent url(../img/timings/calendar26.png) no-repeat;
+  }
+
+  .chart {
+    margin-top: -5px;
+  }
+
+  .content-holder {
+    width: 1210px;
+  }
+
+  .v-link span {
+    color: #349aff;
+  }
+
+  .v-link-spec span {
+    color: #56AA1C;
+    font-weight: bold;
+  }
+
+  .v-label-charts-label {
+    font-weight: bold;
+    color: #56AA1C;
+    background: transparent;
+    text-align: center;
+  }
+
+  .v-button-charts-label {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #56AA1C;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    padding: 0;
+    margin: 0;
+    .v-button-wrap {
+      margin-right: -35px;
+      padding: 0;
+    }
+    .v-popup-indicator {
+      margin-left: -15px;
+      visibility: hidden;
+    }
+  }
+
+  .v-label-error {
+    font-size: 18px;
+    color: brown;
+  }
+
+  .v-table-footer-container {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  .v-window {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .v-window-popup {
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .v-window-outerheader {
+    font-size: 0px;
+  }
+
+  .session-buttons {
+    margin-top: -15px;
+  }
+
+  .v-button-session-link {
+    margin-right: 30px;
+    margin-bottom: 10px;
+  }
+
+  .v-button-active .v-button-caption {
+    color: red;
+  }
+
+  .v-table-sessions {
+    margin-top: 10px;
+    .v-scrollable {
+      overflow-x: scroll;
+    }
+  }
+
+  .filter-panel {
+    margin-top: -10px;
+  }
+
+  .charts-tabs {
+    margin-top: -5px;
+    min-width: 500px;
+    max-width: 100%;
+  }
+
+  .sessions-tabs {
+    min-width: 1300px;
+  }
+
+  .timings-navigation-header {
+    //min-width: 1300px;
+    //text-align: center;
+  }
+
+  .v-popupview-popup {
+    background: #343638;
+    background: rgba(249, 249, 249, .97);
+    @include box-shadow(0 2px 5px rgba(0, 0, 0, .5));
+
+    color: #fff;
+
+    padding: 4px;
+
+    @include border-radius(.3em);
+    border: none;
+
+    min-width: 10em;
+
+    @include fade-in;
+  }
+
+}

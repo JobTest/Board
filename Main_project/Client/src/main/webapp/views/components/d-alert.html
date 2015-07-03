@@ -1,0 +1,4 @@
+<div class="alerts">
+    <alert ng-repeat="alert in ctr.alerts" type="{{::alert.type}}" close="::closeAlert($index)">{{::alert.msg}}
+    </alert>
+</div>

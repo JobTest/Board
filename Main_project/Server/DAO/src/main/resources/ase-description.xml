@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd   http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+    <tx:annotation-driven transaction-manager="descriptionTransactionManager"/>
+    <context:component-scan
+            base-package="com.pb.dashboard.server.dao.service.impl"/>
+    <!--<jpa:repositories base-package="com.pb.dashboard.server.dao.repository" entity-manager-factory-ref="vitrinaEntityManagerFactory"/>-->
+
+    <jee:jndi-lookup id="descriptionDataSource"
+                     jndi-name="jdbc/description"
+                     lookup-on-startup="false"
+                     proxy-interface="javax.sql.DataSource"/>
+
+    <bean id="descriptionTransactionManager"
+          class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory"
+                  ref="descriptionEntityManagerFactory"/>
+        <property name="dataSource" ref="descriptionDataSource"/>
+        <property name="jpaDialect" ref="jpaDialect"/>
+    </bean>
+
+    <bean id="descriptionEntityManagerFactory" name="descriptionEntityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceXmlLocation"
+                  value="classpath:config/persistance.xml"/>
+        <property name="persistenceUnitName" value="descriptionUnit"/>
+        <property name="dataSource" ref="descriptionDataSource"/>
+        <property name="jpaVendorAdapter" ref="sybaseJpaVendorAdapter"/>
+        <property name="jpaDialect" ref="jpaDialect"/>
+        <property name="packagesToScan"
+                  value="com.pb.dashboard.server.dao.entity.description.*"/>
+    </bean>
+
+    <bean id="sybaseJpaVendorAdapter"
+          class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="database" value="SYBASE"/>
+        <property name="databasePlatform"
+                  value="org.hibernate.dialect.Sybase11Dialect"/>
+    </bean>
+
+    <bean id="jpaDialect"
+          class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+
+</beans>

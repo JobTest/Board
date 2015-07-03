@@ -1,0 +1,15 @@
+.navigator-item {
+  background-color: inherit;
+  color: #9d9d9d;
+}
+
+.navigator-panel {
+  background-color: #080808;
+  padding: 10px;
+  margin: 0px;
+  border-color: grey;
+}
+
+#menu a, #menu a span {
+  color: #f0f0f0;
+}

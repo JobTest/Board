@@ -1,0 +1,12 @@
+<div id="date-popup" class="col-md-6">
+    <p class="input-group">
+        <input type="text" class="form-control" datepicker-popup="{{::ctr.format}}" ng-model="ctr.currentDate"
+               is-open="ctr.open" max-date="::ctr.maxDate" datepicker-options="::ctr.dateOptions"
+               ng-required="true" disabled show-button-bar="false" ng-change="::ctr.change()"/>
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="::ctr.openDatePopup($event)">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
+    </p>
+</div>

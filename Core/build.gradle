@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+archivesBaseName = "dashboard-core"
+
+
+dependencies {
+    compile "log4j:log4j:$log4jVersion"
+    compile "com.vaadin:vaadin-client:$vaadinClientVersion"
+    compile "mysql:mysql-connector-java:$mysqlConnectorVersion"
+    compile "org.codehaus.janino:janino:$janinoVersion"
+    compile "org.vaadin.addons:refresher:$refresherAddonVersion"
+    compile "org.apache.tomcat:tomcat-jdbc:$tomcatJDBCVersion"
+    compile "org.mongodb:mongo-java-driver:$mongoJavaDriverVersion"
+}

@@ -1,0 +1,14 @@
+<div ng-controller="AuthController as auth">
+    <h2><span>Обязательная авторизация</span></h2>
+    <tabset class="">
+        <tab heading="Текущий месяц" class="tab-header-area">
+            <auth-table list="model.authInMonth"></auth-table>
+        </tab>
+        <tab heading="Общая" class="tab-close-button">
+            <auth-table list="model.auth"></auth-table>
+        </tab>
+        <tab heading="Отправленные СМС" class="tab-content">
+            <sms-table list="model.smsPays"></sms-table>
+        </tab>
+    </tabset>
+</div>
