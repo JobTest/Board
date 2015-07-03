@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd   http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+    <context:component-scan
+            base-package="com.pb.dashboard.server.dao.service.impl"/>
+
+    <!--*****************JPA configuration*****************-->
+
+    <tx:annotation-driven transaction-manager="dashboardTransactionManager"/>
+
+    <bean id="dashboardTransactionManager"
+          class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory"
+                  ref="dashboardEntityManagerFactory"/>
+        <property name="dataSource" ref="dashboardDataSource"/>
+        <property name="jpaDialect" ref="jpaDialect"/>
+    </bean>
+
+
+    <jee:jndi-lookup id="dashboardDataSource" jndi-name="jdbc/dashboard"
+                     lookup-on-startup="false"
+                     proxy-interface="javax.sql.DataSource"/>
+
+
+    <bean id="dashboardEntityManagerFactory"
+          name="dashboardEntityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceXmlLocation"
+                  value="classpath:config/persistance.xml"/>
+        <property name="persistenceUnitName" value="dashboardUnit"/>
+        <property name="dataSource" ref="dashboardDataSource"/>
+        <property name="jpaVendorAdapter" ref="mysqlJpaVendorAdapter"/>
+        <property name="jpaDialect" ref="jpaDialect"/>
+        <property name="packagesToScan"
+                  value="com.pb.dashboard.server.dao.entity.dashboard.*"/>
+    </bean>
+
+    <bean id="mysqlJpaVendorAdapter"
+          class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="database" value="MYSQL"/>
+        <property name="databasePlatform"
+                  value="org.hibernate.dialect.MySQL5Dialect"/>
+    </bean>
+
+    <bean id="jpaDialect"
+          class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+</beans>

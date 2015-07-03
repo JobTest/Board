@@ -1,0 +1,85 @@
+@mixin timeline-view {
+
+  .timeline-view .v-spacing {
+    width: 20px;
+    height: 20px;
+  }
+
+  .timeline-view .v-caption-data-view {
+    font-weight: 700;
+    font-size: 13px;
+    color: #00B8E6;
+    text-transform: uppercase;
+    padding: 0 20px;
+    line-height: 38px;
+    border-bottom: 1px solid #eee;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .timeline-view .v-csslayout {
+    padding: 0px 10px 0px;
+    overflow: auto;
+    position: relative;
+  }
+
+  .timeline-view .data-view {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .timeline-view .timeline-panel {
+    border: solid 1px #C2C2C2;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+  }
+
+  .timeline-view .v-slot-configure {
+    margin-top: -12px;
+    margin-left: 10px;
+  }
+
+  .info-panel .layout-panel {
+    background-color: #191919;
+  }
+
+// sub panel styles
+
+  .v-slot-sub-panel .v-caption {
+    font-weight: 600;
+    font-size: 14px;
+    color: #00B8E6;
+  }
+
+  .v-slot-sub-panel .v-label {
+    font-size: 14px;
+  }
+
+  .v-slot-sub-panel .v-label-right {
+    position: absolute;
+    top: 3px;
+    left: 60px;
+    font-weight: bold;
+  }
+
+  .v-slot-sub-panel .v-label {
+    color: #ffffff;
+  }
+
+  .v-slot-sub-panel .v-label-min {
+    color: #745639;
+  }
+
+  .v-slot-sub-panel .v-label-max {
+    color: #33CC33
+  }
+
+  .v-slot-sub-panel .v-label-avg {
+    color: #FF4719
+  }
+
+}

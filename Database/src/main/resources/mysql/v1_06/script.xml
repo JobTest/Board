@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="v1.06.1" author="dn190693mvi" runOnChange="true">
+        <comment>https://itsm.privatbank.ua/predmine/dashboard/issue/332717.htm
+            добавление таблицы channel_output(каналы для вывода)
+        </comment>
+        <sql> <![CDATA[
+                DROP TABLE IF EXISTS channel_output;
+                CREATE TABLE channel_output
+                (
+                    `id`   INT PRIMARY KEY NOT NULL,
+                    `name` VARCHAR(20)     NOT NULL
+                );
+                CREATE UNIQUE INDEX `name` ON channel_output (`name`);
+            ]]></sql>
+    </changeSet>
+
+    <changeSet id="v1.06.2" author="dn190693mvi" runOnChange="true">
+        <comment>https://itsm.privatbank.ua/predmine/dashboard/issue/332717.htm
+            заполение таблицы channel_output(каналы для вывода)
+        </comment>
+        <sql> <![CDATA[
+                INSERT INTO channel_output (id, name)
+                VALUES (0, 'Другие каналы');
+
+                INSERT INTO channel_output (id, name)
+                VALUES (1, 'bilet.pb.ua');
+
+                INSERT INTO channel_output (id, name)
+                VALUES (2, 'Отделение');
+
+                INSERT INTO channel_output (id, name)
+                VALUES (3, 'Приват24');
+
+                INSERT INTO channel_output (id, name)
+                VALUES (4, 'Касса провайдера');
+
+                INSERT INTO channel_output (id, name)
+                VALUES (5, 'ТСО');
+
+                INSERT INTO channel_output (id, name)
+                VALUES (6, 'Приват24 Юр.лиц');
+
+                INSERT INTO channel_output (id, name)
+                VALUES (7, '3700');
+
+                INSERT INTO channel_output (id, name)
+                VALUES (8, 'Моб.приложение');
+            ]]></sql>
+    </changeSet>
+
+    <changeSet id="v1.06.3" author="dn190693mvi" runOnChange="true">
+        <comment>https://itsm.privatbank.ua/predmine/dashboard/issue/332717.htm
+            добавление таблицы channel
+        </comment>
+        <sql> <![CDATA[
+                DROP TABLE IF EXISTS channel;
+                CREATE TABLE channel
+                (
+                  id                  INT PRIMARY KEY NOT NULL,
+                  attr_id             VARCHAR(15)     NOT NULL,
+                  name                VARCHAR(20) DEFAULT NULL,
+                  fkey_channel_output INT DEFAULT 0
+                );
+                CREATE UNIQUE INDEX name ON channel (name);
+            ]]></sql>
+    </changeSet>
+
+    <changeSet id="v1.06.4" author="dn190693mvi" runOnChange="true">
+        <comment>https://itsm.privatbank.ua/predmine/dashboard/issue/332717.htm
+            заполнение таблицы channel
+        </comment>
+        <sql> <![CDATA[
+                # ТСО (англ.) - {TCO}
+                INSERT INTO channel (id, attr_id, fkey_channel_output)
+                VALUES (0, 'TCO', 5);
+
+                # ТСО (русс.) - {TCO}
+                INSERT INTO channel (id, attr_id, fkey_channel_output)
+                VALUES (1, 'ТСО', 5);
+
+                # add TKASS - {Отделение}
+                INSERT INTO channel (id, attr_id, fkey_channel_output)
+                VALUES (2, 'TKASS', 2);
+
+                # add касса провай - {Касса провайдера}
+                INSERT INTO channel (id, attr_id, fkey_channel_output)
+                VALUES (3, 'КАССА ПРОВАЙ', 4);
+
+                # add BILET.PB.UA - {bilet.pb.ua}
+                INSERT INTO channel (id, attr_id, fkey_channel_output)
+                VALUES (4, 'BILET.PB.UA', 1);
+
+                # add OTD - {Отделение}
+                INSERT INTO channel (id, attr_id, fkey_channel_output)
+                VALUES (5, 'OTD', 2);
+
+                # add P24 - {Приват24}
+                INSERT INTO channel (id, attr_id, fkey_channel_output)
+                VALUES (6, 'P24', 3);
+
+                # add P24_JUR - {Приват24 Юр.лиц}
+                INSERT INTO channel (id, attr_id, fkey_channel_output)
+                VALUES (7, 'P24_JUR', 6);
+
+                # add 3700 - {3700}
+                INSERT INTO channel (id, attr_id, fkey_channel_output)
+                VALUES (8, '3700', 7);
+
+                # add Android/iPho - {Моб.приложение}
+                INSERT INTO channel (id, attr_id, fkey_channel_output)
+                VALUES (9, 'Android/iPho', 8);
+
+                # add Android/iPho - {Моб.приложение}
+                INSERT INTO channel (id, attr_id, fkey_channel_output)
+                VALUES (10, 'ANDROID/IPHO', 8);
+            ]]></sql>
+    </changeSet>
+
+</databaseChangeLog>

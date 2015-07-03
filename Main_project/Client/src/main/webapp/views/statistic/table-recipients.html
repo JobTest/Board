@@ -1,0 +1,27 @@
+<div id="recipients" class="center">
+    <ul>
+        <span class="block left">Топ</span>
+
+        <div class="block left btn-group">
+            <button ng-repeat="count in ::controller.params.settings().counts" type="button"
+                    ng-class="{'active':controller.params.count() == count}"
+                    ng-click="controller.params.count(count)"
+                    class="btn btn-default">{{::count}}
+            </button>
+        </div>
+        <search-panel></search-panel>
+    </ul>
+    <table ng-table="::controller.params" template-pagination="custom/pager" class="table table-bordered">
+        <tr ng-repeat="recipient in $data"
+            ng-click="controller.changeSelection(recipient)"
+            ng-class="{'active': recipient.$selected}">
+            <td class="left" data-title="'Получатель'">{{::recipient.name}}({{::recipient.id}})</td>
+            <td data-title="'90%'" ng-bind="::recipient.duration90">
+            <td data-title="'95%'" ng-bind="::recipient.duration95">
+            <td data-title="'99%'" ng-bind="::recipient.duration99">
+            <td data-title="'Количество запросов'" ng-bind="::recipient.count">
+        </tr>
+    </table>
+    <a id="goto-up" class="left" ng-click="controller.gotoUp()">Вверх &uarr;</a>
+</div>
+<script type="text/ng-template" id="custom/pager"></script>

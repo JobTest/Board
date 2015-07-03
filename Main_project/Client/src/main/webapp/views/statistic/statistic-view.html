@@ -1,0 +1,43 @@
+<div ng-controller="StatisticController as statistic">
+  <div id="filter" class="center">
+    <div id="date-popup" class="col-md-6">
+      <p class="input-group">
+        <input type="text" class="form-control" datepicker-popup="{{::model.format}}" ng-model="model.date"
+               is-open="model.openedDatePopup" max-date="model.maxDate" datepicker-options="model.dateOptions"
+               ng-required="true" disabled show-button-bar="false"/>
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="statistic.openDatePopup($event)">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
+      </p>
+    </div>
+    <button ng-click="statistic.apply()" class="btn btn-primary top">Применить</button>
+  </div>
+
+  <div class="center">
+    <h4>
+      <span>{{::statistic.country.name}} > {{::statistic.complex.name}}</span>
+
+            <span class="dropdown" dropdown>
+                <a href class="dropdown-toggle" dropdown-toggle>{{model.bpInterface.description}}</a>
+                <ul class="dropdown-menu">
+                  <li ng-repeat="bpInterface in model.bpInterfaces">
+                    <a href ng-click="statistic.selectInterface(bpInterface)" ng-bind="::bpInterface.description"></a>
+                  </li>
+                </ul>
+            </span>
+      <span> > Общее время работы полу-лей</span>
+
+            <span ng-show="model.recipientInfoVisible"> > {{model.selectedRecipient.name}}({{model.selectedRecipient.id}})
+            </span>
+    </h4>
+  </div>
+
+  <hr/>
+
+  <table-recipients ng-show="model.recipientsVisible"></table-recipients>
+  <h5><a ng-show="model.recipientInfoVisible" ng-click="statistic.showFirstPage()">Назад</a></h5>
+  <info-recipient ng-show="model.recipientInfoVisible" class="center"></info-recipient>
+
+</div>
