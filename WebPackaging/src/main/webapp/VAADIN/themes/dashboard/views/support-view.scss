@@ -1,0 +1,49 @@
+@mixin support-view {
+
+  .support-view .layout-panel .v-caption {
+    font-weight: 600;
+    font-size: 15px;
+    color: #00B8E6;
+    padding: 0 20px;
+    line-height: 36px;
+    border-bottom: 1px solid #D2D2D2;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .support-view .inner-panel {
+    margin-top: 30px;
+  }
+
+  .nagios-panel {
+    height: 1100px;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .support-view .configure {
+    position: absolute;
+    z-index: 1;
+    top: 4px;
+    right: 5px;
+  }
+
+  .support-view .data-view {
+    margin-top: 15px;
+  }
+
+  .v-window-popup {
+    padding-top: 5px;
+  }
+
+  .v-gridlayout {
+    margin-bottom: 20px;
+    .v-label-bold {
+      font-weight: bold;
+    }
+  }
+
+}

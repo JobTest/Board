@@ -1,0 +1,59 @@
+@mixin trends-view {
+
+  .trends-info-panel .layout-panel .v-caption {
+    font-weight: 600;
+    font-size: 14px;
+    color: #00B8E6;
+    padding: 0 20px;
+    line-height: 25px;
+    border-bottom: 1px solid #D2D2D2;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .trends-info-panel .layout-panel {
+    padding-top: 30px;
+    padding-left: -5px;
+    background-color: #EBEBEB;
+    overflow: hidden;
+  }
+
+  .trends-info-panel .day {
+    background-color: #D4F1FF;
+  }
+
+  .trends-info-panel .sub-panel {
+    margin-left: -3px;
+  }
+
+  .trends-info-panel .sub-panel .v-label {
+    color: #7A7A7A;
+  }
+
+  .trends-info-panel .sub-panel .v-label-left {
+    margin-top: 20px;
+  }
+
+  .trends-info-panel .sub-panel .v-label-center {
+    text-align: center;
+    font-weight: bold;
+    font-size: 21px;
+    margin-top: 4px;
+  }
+
+  .trends-info-panel .sub-panel .v-label-smaller {
+    font-size: 18px;
+  }
+
+  .trends-info-panel .sub-panel .v-label-negative {
+    color: #FF3300;
+  }
+
+  .trends-info-panel .sub-panel .v-label-positive {
+    color: #009933;
+  }
+
+}

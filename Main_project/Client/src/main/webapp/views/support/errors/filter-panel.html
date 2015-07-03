@@ -1,0 +1,12 @@
+<div class="filter">
+    <form name="navigator" class="inline-block">
+        <label ng-repeat="item in filters">
+            <input type="radio" ng-model="model.selected" ng-value="::item">
+            <span>{{::item.value}}</span>
+        </label>
+    </form>
+    <calendar ng-show="model.selected.isDate==='true'" date="model.date" class="support-calendar"></calendar>
+    <calendar ng-show="model.selected.isPeriod==='true'" date="model.startDate" class="support-calendar"></calendar>
+    <calendar ng-show="model.selected.isPeriod==='true'" date="model.endDate" class="support-calendar"></calendar>
+    <button ng-click="ctr.apply()" class="btn btn-primary top inline-block">Применить</button>
+</div>

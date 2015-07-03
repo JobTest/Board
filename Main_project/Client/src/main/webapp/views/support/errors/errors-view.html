@@ -1,0 +1,19 @@
+<div ng-controller="SupportErrorsController as err" class="errors-view">
+    <filter-panel apply="::applyFilter" date="::model.date" start-date="::model.startDate" end-date="::model.endDate"
+                  filters="model.filters" filter-selected="model.filterSelected"></filter-panel>
+
+    <d-alert control="alertControl"></d-alert>
+    <div class="popup-content" ng-style="err.popupStyle" mouse-up-left="closePopup()">
+        <p ng-repeat="item in model.interfaceErrorCounts">
+            <a ng-href="{{item.href}}">{{::item.interfaceName}} : {{::item.errorCount}}</a>
+        </p>
+    </div>
+
+    <div style="width:100%;" class="inline-block">
+        <div ng-repeat="item in ::model.complexes">
+            <complex-panel complex="::item" interfaces="model.interfaces[item.getId()]"
+                           errors="model.errors[item.getId()]"
+                           selected="model.interfaceSelected[item.getId()]"></complex-panel>
+        </div>
+    </div>
+</div>

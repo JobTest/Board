@@ -1,0 +1,217 @@
+package $packageName;
+
+import com.pb.pb.support.creatingsoapuiunittests.PluginException;
+import com.pb.biplane.utils.common.crypt.PasswordHider;
+import com.pb.biplane.utils.common.crypt.CriptingException;
+import java.security.NoSuchAlgorithmException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.apache.log4j.Logger;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.io.File;
+import junit.framework.TestCase;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import testlink.api.java.client.TestLinkAPIClient;
+import testlink.api.java.client.TestLinkAPIException;
+import testlink.api.java.client.TestLinkAPIHelper;
+import testlink.api.java.client.TestLinkAPIResults;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class ${className} extends TestCase {
+
+    private static Logger logger = Logger.getLogger(${className}.class);
+    private WebDriver driver;
+    private String appProject = ${projectName};
+    private String testPlan = ${testPlan};
+    private StringBuffer verificationErrors = new StringBuffer();
+    private TestLinkAPIClient testlinkAPIClient;
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd_HHmmss");
+    private Connection connection = null;
+    private Statement st = null;
+    private Date today = new Date();
+    private String pattern = "dd-MM-yyyy-HH:mm:ss";
+    private SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+    private String date = dateFormat.format(today);
+    private File screenshot = null;
+    private String baseUrl;
+
+    @Before
+    public void setUp() throws Exception {
+        DesiredCapabilities desireCapabilities = new DesiredCapabilities();
+        desireCapabilities.setPlatform(Platform.${platform});
+        desireCapabilities.setBrowserName(${browser});
+        desireCapabilities.setVersion($browserversion);
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--user-data-dir=/home/selenium/.config/google-chrome/");
+        desireCapabilities.setCapability(ChromeOptions.CAPABILITY, options);
+        driver = new RemoteWebDriver(new URL("http://10.13.70.63:4444/wd/hub"), desireCapabilities);
+        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(100, TimeUnit.SECONDS);
+        appProject = new String(appProject.getBytes("ISO-8859-1"), "UTF-8");
+        baseUrl = System.getProperty("autoTestHost");
+    }
+
+    @Test
+    public void test() throws Exception {
+        driver.get(baseUrl);
+        $methodBody
+    }
+
+    @After
+    public void tearDown() {
+        String verificationErrorString = verificationErrors.toString();
+        if (!"".equals(verificationErrorString)) {
+            File tmpScreen = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            File screenshot = null;
+            try {
+                FileUtils.copyFile(tmpScreen,screenshot = new File("screenShots/"+${browser}+${browserversion}+${className}.class.getSimpleName()+ date+".png"));
+                logger.info(buildLinkToScreenshot(screenshot));
+            } catch (IOException e) {
+                driver.quit();
+                e.printStackTrace();
+            }
+            driver.quit();
+            try {
+                writeDataToTestLink(verificationErrorString+"\n"+"${platform} "+${browser}+"-"+$browserversion, TestLinkAPIResults.TEST_FAILED);
+            } catch (Exception e) {
+                driver.quit();
+                e.printStackTrace();
+            }
+        } else {
+                try {
+                    writeDataToTestLink("${platform} "+${browser}+"-"+$browserversion, TestLinkAPIResults.TEST_PASSED);
+                    } catch (Exception e) {
+                        driver.quit();
+                        e.printStackTrace();
+                    }
+        }
+        driver.quit();
+    }
+
+    private boolean isElementPresent(By by) {
+        try {
+            driver.findElement(by);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    private void writeDataToTestLink(String nota, String testresult) throws TestLinkAPIException, PluginException, SQLException {
+        testlinkAPIClient = new TestLinkAPIClient("e526fa981d0aa8cd022b5c7cbb31c149",
+                                                  "https://testlink.privatbank.ua/lib/api/xmlrpc.php",true);
+        int projectId = TestLinkAPIHelper.getProjectID(testlinkAPIClient, appProject);
+        logger.info(projectId);
+        int TestPlanId = TestLinkAPIHelper.getPlanID(testlinkAPIClient, projectId, testPlan);
+        logger.info("Test Plan Id = "+TestPlanId);
+        int BUILD_ID = TestLinkAPIHelper.getBuildID(testlinkAPIClient, TestPlanId, ${buildname});
+        logger.info("Write data to TestLink, date_time = " + DATE_FORMAT.format(new Date()));
+        int testCaseID = this.getTestCaseActualId(Integer.parseInt(${className}.class.getSimpleName().replaceAll( "[^\\d]", "" )),projectId);
+        testlinkAPIClient.reportTestCaseResult(TestPlanId, testCaseID, BUILD_ID, nota, testresult);
+    }
+
+    public void connect() {
+        String dbUrl = ${urlDB};
+        String dbUsername = ${usernameDB};
+        String dbPassword = ${passwordDB};
+        try {
+            checkString("dbAdress", dbUrl);
+            checkString("login", dbUsername);
+            checkString("password", dbPassword);
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(dbUrl, dbUsername, PasswordHider.decrypt(dbPassword));
+            st = connection.createStatement();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void checkString(String name, String value) throws PluginException {
+        if (value == null || value.trim().isEmpty()) {
+            throw new PluginException(name + " param is not specified.");
+        }
+    }
+
+    private int getTestCaseID(String testCaseName) throws PluginException {
+        Matcher matcher = Pattern.compile("\\d+").matcher(testCaseName);
+        if (matcher.find()) {
+            return Integer.valueOf(matcher.group());
+        } else {
+            throw new PluginException("Not valid test case name - [" + testCaseName + "]");
+        }
+    }
+
+    private int getTestCaseActualId2(String testCaseName, int TestPlanId) throws PluginException, SQLException {
+        int actualId = 0;
+        int id = 0;
+        connect();
+        id = getTestCaseID(testCaseName);
+        ResultSet rs;
+        rs = st.executeQuery("select max(tc.tcase_id) as tcase_id from tcversions "+
+                             "tla join testplan_tcversions tpver on tpver.tcversion_id=tla.id "+
+                             "join tcases_active tc on tc.tc_external_id=tla.tc_external_id where "+
+                             "tla.tc_external_id="+id+ " and tpver.testplan_id="+TestPlanId);
+        while (rs.next()) {
+            actualId = Integer.parseInt(rs.getString("TCASE_ID"));
+        }
+        close();
+        return actualId;
+    }
+
+    private int getTestCaseActualId(int testCaseName, int projectID) throws PluginException, SQLException, TestLinkAPIException {
+        String prefix = null;
+        int id = 0;
+        connect();
+        ResultSet rs;
+        rs = st.executeQuery("select prefix from testprojects where id ="+projectID);
+        while (rs.next()) {
+            prefix = rs.getString("prefix");
+        }
+        logger.info("testCaseName = "+testCaseName);
+        logger.info("test id = " + TestLinkAPIHelper.getTestCaseID(testlinkAPIClient,projectID,prefix+"-"+testCaseName));
+        close();
+        return TestLinkAPIHelper.getTestCaseID(testlinkAPIClient,projectID,prefix+"-"+testCaseName);
+    }
+
+    public String buildLinkToScreenshot(File file){
+        String link= null;
+        String sourceString = file.getAbsolutePath();
+        String linkHead = "http://jenkins.nc.pb.ua/jenkins/job";
+        String linkTail = "/screen_shots/"+file.getName();
+        int linkTailLength = linkTail.length();
+        String jobName = sourceString.substring(35, sourceString.length()-linkTailLength);
+        link = linkHead+jobName+"/ws"+linkTail;
+        return link;
+    }
+
+     public void close() throws PluginException {
+        try {
+            if (st != null) {
+                st.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException ex) {
+            throw new PluginException(ex.getMessage(), ex);
+        }
+    }
+}

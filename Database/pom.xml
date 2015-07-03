@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>Database</artifactId>
+    <groupId>com.pb.dashboard</groupId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <liquibase.version>3.0.1</liquibase.version>
+        <liquibase.driver>com.mysql.jdbc.Driver</liquibase.driver>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.30</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>${liquibase.version}</version>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                            <changeLogFile>${change.log.file}</changeLogFile>
+                            <driver>${liquibase.driver}</driver>
+                            <url>${database.url}</url>
+                            <!--пользователь и пароль должны хранится в локальном файле settings.xml!-->
+                            <username>${liquibase.user}</username>
+                            <!--свойство передается из плагина выше-->
+                            <password>${liquibase.real.password}</password>
+                            <!--если нужен дебаг - просто раскоментировать строчку-->
+                            <logging>debug</logging>
+                        </configuration>
+                        <goals>
+                            <goal>update</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>10.13.71.34:3306/dashboard</id>
+            <properties>
+                <database.url>jdbc:mysql://10.13.71.34:3306/dashboard</database.url>
+                <change.log.file>src/main/resources/master_dashboard_mysql.xml</change.log.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>10.13.71.34:3306/dashboard_dev</id>
+            <properties>
+                <database.url>jdbc:mysql://10.13.71.34:3306/dashboard_dev</database.url>
+                <change.log.file>src/main/resources/master_dashboard_mysql.xml</change.log.file>
+            </properties>
+        </profile>
+    </profiles>
+</project>

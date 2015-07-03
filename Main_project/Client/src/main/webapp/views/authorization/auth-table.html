@@ -1,0 +1,14 @@
+<div id="auth-table" class="center">
+    <table ng-table="::ctr.params" class="table">
+        <tr ng-repeat="recipient in $data">
+            <td data-title="'Дата'">{{::recipient.date}}</td>
+            <td data-title="'Операций в ТСО'" ng-bind="::recipient.tco">
+            <td data-title="'Авторизация по QR-коду'" ng-bind="::recipient.qrCode">
+            <td data-title="'Без авторизации'" ng-bind="::recipient.noAuth">
+            <td data-title="'%'" ng-bind="::recipient.persNoAuth+'%'">
+            <td data-title="'Авторизация по карте'" ng-bind="::recipient.card">
+            <td data-title="'Авторизация по телефону'" ng-bind="::recipient.phone">
+            <td data-title="'телефон,%'" ng-bind="::recipient.persPhone+'%'">
+        </tr>
+    </table>
+</div>

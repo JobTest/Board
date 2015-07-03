@@ -1,0 +1,18 @@
+<div class="complex-panel">
+    <div id="header">
+        <span id="title">{{::complex.getName()}}</span>
+
+        <span id="interfaces" class="btn-group" dropdown>
+            <a class="btn btn-default dropdown-toggle btn-select2" dropdown-toggle data-toggle="dropdown">
+                {{ctr.selected.name}}<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li ng-repeat="item in ctr.list">
+                    <a ng-click="ctr.clickItem(item)">{{::item.name}}</a>
+                </li>
+            </ul>
+        </span>
+    </div>
+
+    <highchart class="chart" config="::ctr.chartParamsSystem"></highchart>
+    <highchart class="chart" config="::ctr.chartParamsBusiness"></highchart>
+</div>

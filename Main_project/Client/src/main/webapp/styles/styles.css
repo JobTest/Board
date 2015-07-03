@@ -1,0 +1,42 @@
+body {
+  min-width: 1100px;
+}
+
+/* Hide Angular JS elements before initializing */
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+.container {
+  font-size: 13px;
+  margin: 0px 20px;
+  width: inherit;
+}
+
+.vertical-align-top {
+  vertical-align: top;
+}
+
+.top {
+  vertical-align: top;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.block {
+  display: block;
+}

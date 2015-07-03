@@ -1,0 +1,79 @@
+.pagination {
+  font-size: 12px;
+}
+
+.table > tbody > tr.active > td {
+  cursor: pointer;
+  background-color: #999e9d;
+}
+
+.dropdown-menu-item {
+  min-width: 80px;
+  text-align: center;
+  left: -10px;
+}
+
+#date-popup {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+  width: 300px;
+}
+
+#date-popup > p > input {
+  text-align: center;
+}
+
+.header {
+  text-align: center;
+}
+
+#recipients {
+  font-size: 14px;
+}
+
+.chart {
+  min-width: 310px;
+  height: 300px;
+}
+
+.navbar {
+  border-radius: 0;
+  margin-bottom: 15px;
+}
+
+#goto-up {
+  opacity: 0;
+  font-size: 40px;
+}
+
+#goto-up.appeared {
+  transition: all 1s ease-in-out 0.2s;
+  font-size: 16px;
+  opacity: 1;
+}
+
+#goto-up:hover {
+  transition: all 1s linear 0.2s;
+  opacity: 1;
+}
+
+.popup-search {
+  width: 400px;
+}
+
+.popup-search li {
+  margin-right: 15px;
+}
+
+.front-all {
+  z-index: 5;
+}
+
+#recipients {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  align-content: center;
+  max-width: 70%;
+}

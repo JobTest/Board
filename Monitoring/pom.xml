@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>dashboard</artifactId>
+        <groupId>com.pb.dashboard</groupId>
+        <version>${dashboard.version}</version>
+    </parent>
+
+    <artifactId>Monitoring</artifactId>
+    <packaging>jar</packaging>
+    <dependencies>
+        <!-- Modules-->
+        <dependency>
+            <groupId>com.pb.dashboard</groupId>
+            <artifactId>Core</artifactId>
+            <version>${dashboard.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pb.dashboard</groupId>
+            <artifactId>Dao</artifactId>
+            <version>${dashboard.version}</version>
+        </dependency>
+        <!-- /Modules -->
+        <!-- Vaadin -->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin.addon</groupId>
+            <artifactId>vaadin-charts</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.vaadin.addons</groupId>
+            <artifactId>borderlayout</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.vaadin.addons</groupId>
+            <artifactId>popupbutton</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.vaadin.addons</groupId>
+            <artifactId>activelink</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.vaadin.addons</groupId>
+            <artifactId>refresher</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.vaadin.addons</groupId>
+            <artifactId>aceeditor</artifactId>
+        </dependency>
+        <!-- /Vaadin -->
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+
+        <!--Logging-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+        <!--/Logging-->
+
+        <!-- Driver DB -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>2.12.2</version>
+        </dependency>
+        <!-- /Driver DB -->
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+        </dependency>
+        <!-- /Testing -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>

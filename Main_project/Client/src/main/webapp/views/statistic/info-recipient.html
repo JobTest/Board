@@ -1,0 +1,12 @@
+<table ng-table="::recipient.tableParams" class="table table-bordered">
+    <tr ng-repeat="countItem in $data">
+        <td data-title="'Период'" ng-bind="::countItem.hour">
+        <td data-title="'Кол-во запросов'" ng-bind="::countItem.count">
+        <td data-title="'Кол-во ошибок'" ng-bind="::countItem.errorCount">
+        <td data-title="'Длительность max'" ng-bind="::countItem.durationMax">
+        <td data-title="'Длительность 90%'" ng-bind="::countItem.duration90">
+        <td data-title="'Длительность 95%'" ng-bind="::countItem.duration95">
+        <td data-title="'Длительность 99%'" ng-bind="::countItem.duration99">
+    </tr>
+</table>
+<highchart class="chart" config="::recipient.chartParams"></highchart>
